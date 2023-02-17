@@ -1,15 +1,20 @@
 import { generateRandomHashColor } from './core/core.js'
 import { toLowerCase } from './core/untils.js'
 import './styles/style.sass'
+import createApp from './view/app.js'
+import createModal from './view/modal.js'
 
 const $app = document.querySelector('#app')
 const $cols = document.querySelectorAll('.col')
+const $modal = createModal('This is color picker app', 'This app allows you to select a number of colors in the palette')
+// $app.appendChild($modal) создание модального окна "Старт"
+createApp($app, 6)
 
-document.addEventListener('DOMContentLoaded', generateColors())
+    // document.addEventListener('DOMContentLoaded', generateColors())
 
 document.addEventListener('keypress', (event) => {
     if (toLowerCase(event.code) === 'space') {
-        generateColors()
+        createApp($app, 6)
     }
 })
 
