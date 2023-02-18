@@ -1,3 +1,5 @@
+import createContent from "./app"
+
 const createModal = (titleText, subtitleText) => {
 
     const $modal = document.createElement('div')
@@ -7,9 +9,8 @@ const createModal = (titleText, subtitleText) => {
             <h1>${titleText}</h1>
             <p>${subtitleText}</p>
         </div>
-        <button class="modal__btn">Start</button>
+        <button class="modal__btn" data-type="btn">Start</button>
     `)
-    
 
     return $modal
 }
