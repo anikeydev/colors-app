@@ -5,7 +5,7 @@ import createContent from './view/app.js'
 import createModal from './view/modal.js'
 
 const $app = document.querySelector('#app')
-const $modal = createModal('This is color picker app', 'This app allows you to select a number of colors in the palette')
+const $modal = createModal('This is color picker app', 'Press "Space" to refresh colors and press "lock" to don`t refresh color')
 // $app.appendChild($modal) создание модального окна "Старт"
 
 document.addEventListener('DOMContentLoaded', $app.appendChild($modal))
@@ -34,6 +34,16 @@ $app.addEventListener('click', (event) => {
 
     if (event.target.dataset.type === 'btn') {
         createHtmlApp()
+    }
+
+    if (event.target.dataset.type === 'help-btn') {
+        $app.innerHTML = ''
+        $app.appendChild($modal)
+    }
+
+    if (event.target.dataset.type === 'hash') {
+        const hash = event.target.innerText
+        navigator.clipboard.writeText(hash)
     }
 })
 
