@@ -5,6 +5,11 @@ const createContent = (countColors) => {
     const $content = document.createElement('div')
     $content.classList.add('app__content')
 
+    const $helpBtn = document.createElement('span')
+    $helpBtn.innerText = 'Help'
+    $helpBtn.classList.add('help-btn')
+    $content.appendChild($helpBtn)
+
     for (let i = 0; i < countColors; i += 1) {
         let randomColor = generateRandomHashColor()
         $content.insertAdjacentHTML('beforeend',
