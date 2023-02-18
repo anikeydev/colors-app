@@ -5,7 +5,6 @@ import createContent from './view/app.js'
 import createModal from './view/modal.js'
 
 const $app = document.querySelector('#app')
-const countColors = 6
 const $modal = createModal('This is color picker app', 'This app allows you to select a number of colors in the palette')
 // $app.appendChild($modal) создание модального окна "Старт"
 
@@ -16,6 +15,12 @@ document.addEventListener('keypress', (event) => {
         if (document.querySelector('.app__content')) {
             generateColors()
         } 
+    }
+
+    if(toLowerCase(event.code) === 'enter') {
+        if (document.querySelector('.modal')) {
+            createHtmlApp()
+        }
     }
 })
 
@@ -28,10 +33,15 @@ $app.addEventListener('click', (event) => {
     }
 
     if (event.target.dataset.type === 'btn') {
-        $app.innerHTML = ''
-        $app.appendChild(createContent(6))
+        createHtmlApp()
     }
 })
+
+function createHtmlApp() {
+    const $input = document.querySelector('.modal__input')
+    $app.innerHTML = ''
+    $app.appendChild(createContent($input.value))
+}
 
 function generateColors() {
     const $cols = document.querySelectorAll('.col')
