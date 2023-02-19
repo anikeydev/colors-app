@@ -7,7 +7,6 @@ import createNotification from './view/notification.js'
 
 const $app = document.querySelector('#app')
 const $modal = createModal('This is color picker app', 'Press "Space" to refresh colors and press "lock" to don`t refresh color')
-// $app.appendChild($modal) создание модального окна "Старт"
 
 document.addEventListener('DOMContentLoaded', $app.appendChild($modal))
  
@@ -25,17 +24,15 @@ document.addEventListener('keypress', (event) => {
     }
 })
 
+$app.addEventListener('click', handlerClickStartBtn)
+
 $app.addEventListener('click', (event) => {
     if (event.target.dataset.lock) {
         event.target.dataset.lock = event.target.dataset.lock === 'false' ? 'true' : 'false' 
         event.target.classList.toggle('fa-lock-open')
         event.target.classList.toggle('fa-lock')
         console.log(event.target)
-    }
-
-    if (event.target.dataset.type === 'btn') {
-        createHtmlApp()
-    }
+    }    
 
     if (event.target.dataset.type === 'help-btn') {
         $app.innerHTML = ''
@@ -45,9 +42,20 @@ $app.addEventListener('click', (event) => {
     if (event.target.dataset.type === 'hash') {
         const hash = event.target.innerText
         navigator.clipboard.writeText(hash)
-        createNotification($app, 'hash copy', { hash, delay: '5s'})
+        createNotification($app,'hash copy', { hash, delay: '5s'})
     }
 })
+
+function handlerClickStartBtn(event) {
+    if (event.target.dataset.type === 'btn') {
+        const $input = document.querySelector('.modal__input')
+        if ($input.value) {
+            createHtmlApp()
+        } else {
+            createNotification($app, 'Min count', { hash: 1 })
+        }
+    }
+}
 
 function createHtmlApp() {
     const $input = document.querySelector('.modal__input')
