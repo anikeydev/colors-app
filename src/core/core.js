@@ -1,4 +1,4 @@
-import { generateRandomNum } from "./untils"
+import { generateRandomNum } from "./utils"
 
 export const generateRandomHashColor = () => {
     const hashCollection = '0123456789ABCDEF'

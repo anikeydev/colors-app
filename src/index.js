@@ -1,8 +1,9 @@
 import { generateRandomHashColor } from './core/core.js'
-import { toLowerCase } from './core/untils.js'
+import { toLowerCase } from './core/utils.js'
 import './styles/style.sass'
 import createContent from './view/app.js'
 import createModal from './view/modal.js'
+import createNotification from './view/notification.js'
 
 const $app = document.querySelector('#app')
 const $modal = createModal('This is color picker app', 'Press "Space" to refresh colors and press "lock" to don`t refresh color')
@@ -44,6 +45,7 @@ $app.addEventListener('click', (event) => {
     if (event.target.dataset.type === 'hash') {
         const hash = event.target.innerText
         navigator.clipboard.writeText(hash)
+        createNotification($app, 'hash copy', { hash, delay: '5s'})
     }
 })
 

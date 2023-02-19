@@ -1,5 +1,3 @@
-import createContent from "./app"
-
 const createModal = (titleText, subtitleText) => {
 
     const $modal = document.createElement('div')
